@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h3>Edit list:</h3>
+        <p>{{ todo_list.title }}</p>
+        <ul>
+            {% for todo in object_list %}
+        <li>
+            <button
+                role="submit"
+                class="btn-primary btn h2 lightBlue get-Started-btn form-control"
+                onclick="location.href='{% url "item-update" todo_list.id todo.id %}'">
+                {{ todo.title }}
+            </button>
+        </li>
+            {% empty %}
+            <h4>There are no to-do items in this list.</h4>
+            {% endfor %}
+        </ul>
+        <p>
+            <input
+                value="Add a new item"
+                type="button"
+                class="btn-primary btn h2 lightBlue get-Started-btn"
+                onclick="location.href='{% url "item-add" todo_list.id %}'" />
+            <input
+                value="Delete this list"
+                type="button"
+                class='btn btn-danger h2'
+                onclick="location.href=
+                '{% url "list-delete" todo_list.id %}'" />
+        </p>
+{% endblock %}
